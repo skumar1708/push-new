@@ -68,6 +68,21 @@ var app = {
 
             listeningElement.setAttribute('style', 'display:none;');
             receivedElement.setAttribute('style', 'display:block;');
+
+
+            alert("REGISTRATION: " + JSON.stringify(data));
+                
+            // unsubscribe and resubscribe
+            push.unsubscribe("all", function () {
+                alert("unsubscribed to all");
+                push.subscribe("all", function successSubscribe () {
+                    // success ...
+                    alert("resubscribed to all");
+                }, function errorSubscribe () {
+                    // error ...
+                    alert("error subscribing to all");
+                });
+            });
         });
 
         push.on('error', function(e) {
@@ -83,14 +98,5 @@ var app = {
                 'Ok'                  // buttonName
             );
        });
-       push.subscribe(
-        'my-topic',
-        () => {
-          alert('subscribe success');
-        },
-        e => {
-            alert('subscribe error:', e);
-        }
-      );
     }
 };
