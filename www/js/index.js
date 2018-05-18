@@ -52,7 +52,6 @@ var app = {
             "windows": {}
         });
         alert('after init');
-
         push.on('registration', function(data) {
             alert('registration event: ' + data.registrationId);
 
