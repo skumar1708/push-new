@@ -75,7 +75,7 @@ var app = {
             // unsubscribe and resubscribe
             push.unsubscribe("all", function () {
                 alert("unsubscribed to all");
-                push.subscribe("all", function successSubscribe () {
+                push.subscribe("allNew", function successSubscribe () {
                     // success ...
                     alert("resubscribed to all");
                 }, function errorSubscribe () {
