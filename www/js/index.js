@@ -59,7 +59,7 @@ var app = {
             if (oldRegId !== data.registrationId) {
                 // Save new registration ID
                 localStorage.setItem('registrationId', data.registrationId);
-              
+            
                 // unsubscribe and resubscribe
                 push.unsubscribe("all", function () {
                     alert("unsubscribed to all");
