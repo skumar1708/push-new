@@ -59,7 +59,18 @@ var app = {
             if (oldRegId !== data.registrationId) {
                 // Save new registration ID
                 localStorage.setItem('registrationId', data.registrationId);
-                // Post registrationId to your app server as the value has changed
+              
+                // unsubscribe and resubscribe
+                push.unsubscribe("all", function () {
+                    alert("unsubscribed to all");
+                    push.subscribe("allNew", function successSubscribe () {
+                        // success ...
+                        alert("resubscribed to all");
+                    }, function errorSubscribe () {
+                        // error ...
+                        alert("error subscribing to all");
+                    });
+                });
             }
 
             var parentElement = document.getElementById('registration');
@@ -68,21 +79,6 @@ var app = {
 
             listeningElement.setAttribute('style', 'display:none;');
             receivedElement.setAttribute('style', 'display:block;');
-
-
-            alert("REGISTRATION: " + JSON.stringify(data));
-                
-            // unsubscribe and resubscribe
-            push.unsubscribe("all", function () {
-                alert("unsubscribed to all");
-                push.subscribe("all", function successSubscribe () {
-                    // success ...
-                    alert("resubscribed to all");
-                }, function errorSubscribe () {
-                    // error ...
-                    alert("error subscribing to all");
-                });
-            });
         });
 
         push.on('error', function(e) {
